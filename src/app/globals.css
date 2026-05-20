@@ -1,26 +1,99 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ── CalX Custom Theme ─ Mobile-matching colors ──────────── */
+
+@theme {
+  /* Gold accent (matches mobile AppColors.gold) */
+  --color-gold-50: #fdf8ed;
+  --color-gold-100: #f9eece;
+  --color-gold-200: #f5d380;
+  --color-gold-300: #edc05e;
+  --color-gold-400: #d4a843;
+  --color-gold-500: #c49635;
+  --color-gold-600: #a67c2a;
+  --color-gold-700: #8a6422;
+  --color-gold-800: #6b4e1b;
+  --color-gold-900: #4d3813;
+
+  /* Neon green (matches mobile AppColors.neonGreen) */
+  --color-neon-50: #e8ffe0;
+  --color-neon-100: #c8ffb0;
+  --color-neon-200: #8eff5e;
+  --color-neon-300: #5eff2a;
+  --color-neon-400: #39ff14;
+  --color-neon-500: #2ee00f;
+  --color-neon-600: #24b30c;
+
+  /* Dark surfaces (matches mobile AppColors) */
+  --color-calx-bg: #0D0D0D;
+  --color-calx-surface: #1A1A2E;
+  --color-calx-surface-variant: #16213E;
+  --color-calx-card: #1E1E30;
+  --color-calx-card-hover: #252540;
+
+  /* Text colors */
+  --color-calx-text: #F5F5F5;
+  --color-calx-text-secondary: #B0B0B0;
+  --color-calx-text-muted: #6C6C6C;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* ── Global Styles ──────────────────────────────────────────── */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-calx-bg);
+  color: var(--color-calx-text);
+}
+
+/* ── Scrollbar ──────────────────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-calx-surface-variant);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-calx-card-hover);
+}
+
+/* ── Glass effect utility ──────────────────────────────────── */
+
+.glass {
+  background: rgba(26, 26, 46, 0.6);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(212, 168, 67, 0.08);
+}
+
+/* ── Gradient text ─────────────────────────────────────────── */
+
+.gradient-text {
+  background: linear-gradient(135deg, #F5D380, #D4A843);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Card hover glow ───────────────────────────────────────── */
+
+.card-glow {
+  transition: all 0.3s ease;
+}
+
+.card-glow:hover {
+  box-shadow: 0 0 30px rgba(212, 168, 67, 0.08);
+  border-color: rgba(212, 168, 67, 0.2);
 }
