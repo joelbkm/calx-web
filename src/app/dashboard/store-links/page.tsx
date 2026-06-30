@@ -3,9 +3,10 @@
 import RoleGuard from '@/components/guards/RoleGuard';
 import { useState, useEffect } from 'react';
 import { doc, onSnapshot, setDoc, Timestamp } from 'firebase/firestore';
-import { db } from '@/lib/firebase/client';
+import { httpsCallable } from 'firebase/functions';
+import { db, functions } from '@/lib/firebase/client';
 import { useAuth } from '@/lib/auth/context';
-import { Smartphone, Save, AlertCircle, Apple, Play } from 'lucide-react';
+import { Smartphone, Save, AlertCircle, Apple, Play, RefreshCw } from 'lucide-react';
 
 interface StoreLinks {
     iosUrl: string;
@@ -44,6 +45,25 @@ export default function StoreLinksPage() {
         });
         return () => unsub();
     }, []);
+
+    const [backfilling, setBackfilling] = useState(false);
+    const [backfillMsg, setBackfillMsg] = useState<string | null>(null);
+
+    const handleBackfill = async () => {
+        setBackfilling(true);
+        setBackfillMsg(null);
+        try {
+            const fn = httpsCallable<Record<string, never>, { ok: boolean; count: number }>(
+                functions, 'backfillUsersPublic'
+            );
+            const res = await fn({});
+            setBackfillMsg(`✅ ${res.data.count} profils synchronisés.`);
+        } catch (e) {
+            const msg = e instanceof Error ? e.message : 'Erreur';
+            setBackfillMsg(`Échec : ${msg}`);
+        }
+        setBackfilling(false);
+    };
 
     const isValid = (url: string) =>
         url.trim() === '' || /^https?:\/\/.+/i.test(url.trim());
@@ -152,6 +172,27 @@ export default function StoreLinksPage() {
                         </button>
                     </div>
                 ) : null}
+
+                {/* Maintenance: backfill the public profile mirror */}
+                <div className="mt-10 pt-6 border-t border-calx-surface">
+                    <h3 className="text-sm font-semibold text-calx-text mb-1">Maintenance</h3>
+                    <p className="text-xs text-calx-text-muted mb-3 max-w-xl">
+                        Synchronise le miroir public des profils (nom + photo modérée) pour les
+                        comptes <strong>existants</strong>. Les nouveaux comptes se synchronisent
+                        automatiquement. À lancer une fois après cette mise à jour.
+                    </p>
+                    <button
+                        onClick={handleBackfill}
+                        disabled={backfilling}
+                        className="flex items-center gap-2 px-5 py-2.5 bg-calx-surface border border-calx-surface-variant text-calx-text rounded-xl hover:border-gold-400/40 transition-all disabled:opacity-50"
+                    >
+                        <RefreshCw size={15} className={backfilling ? 'animate-spin' : ''} />
+                        {backfilling ? 'Synchronisation...' : 'Synchroniser les profils publics'}
+                    </button>
+                    {backfillMsg && (
+                        <p className="mt-2 text-sm text-calx-text-secondary">{backfillMsg}</p>
+                    )}
+                </div>
             </div>
         </RoleGuard>
     );
