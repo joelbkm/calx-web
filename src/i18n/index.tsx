@@ -26,6 +26,16 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     const [locale, setLocaleState] = useState<Locale>('fr');
 
     useEffect(() => {
+        // A `?lang=fr|en` URL param takes priority over the saved preference —
+        // it's how the CalX app deep-links into Terms/Privacy in the user's
+        // current app language (e.g. from the login screen or paywall).
+        const urlLang = new URLSearchParams(window.location.search).get('lang') as Locale | null;
+        if (urlLang && translations[urlLang]) {
+            setLocaleState(urlLang);
+            localStorage.setItem('calx-locale', urlLang);
+            document.documentElement.lang = urlLang;
+            return;
+        }
         const saved = localStorage.getItem('calx-locale') as Locale | null;
         if (saved && translations[saved]) {
             setLocaleState(saved);
