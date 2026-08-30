@@ -159,7 +159,7 @@ const fr = {
     legalBadge: 'Document légal',
     privacyTitle1: 'Politique de ',
     privacyTitle2: 'Confidentialité',
-    lastUpdated: 'Dernière mise à jour : 8 mars 2026',
+    lastUpdated: 'Dernière mise à jour : 30 août 2026',
 
     privacyS1Title: '1. Introduction',
     privacyS1P1: 'CalX («\u00A0nous\u00A0», «\u00A0notre\u00A0», «\u00A0l\'Application\u00A0») est une application mobile de nutrition et de fitness développée et éditée par CalX. La protection de vos données personnelles est une priorité absolue pour nous.',
@@ -201,6 +201,8 @@ const fr = {
     privacyS5F4: 'Génération de menus PDF : création de plans alimentaires personnalisés.',
     privacyS5Warn: 'Important : Les résultats fournis par l\'IA sont des estimations et non des mesures exactes. Ils ne constituent en aucun cas un avis médical ou diététique professionnel. Consultez un professionnel de santé pour tout besoin médical spécifique.',
     privacyS5End: 'Les photos envoyées à Google Gemini sont traitées en temps réel et ne sont pas stockées par Google au-delà du traitement de la requête, conformément à la politique de Google Cloud en matière de données client.',
+
+    privacyS5Consent: 'Consentement : ces fonctions ne s\'activent qu\'après votre accord explicite, demandé dans l\'application avant tout envoi de données au service d\'IA. L\'accord précise quelles données sont transmises (photos de repas et d\'ingrédients, profil — âge, sexe, taille, poids, objectifs, préférences alimentaires, allergies — repas, messages au coach et résumé d\'activité) et à qui (Google Gemini, via les serveurs sécurisés de CalX). Vous pouvez retirer votre accord à tout moment depuis l\'écran Profil de l\'application ; les fonctions d\'IA sont alors désactivées, le reste de l\'application continuant de fonctionner normalement.',
 
     privacyS6Title: '6. Base légale du traitement',
     privacyS6Intro: 'Nous traitons vos données sur les bases juridiques suivantes (article 6 du RGPD) :',

@@ -160,7 +160,7 @@ const en: Translations = {
     legalBadge: 'Legal document',
     privacyTitle1: 'Privacy ',
     privacyTitle2: 'Policy',
-    lastUpdated: 'Last updated: March 8, 2026',
+    lastUpdated: 'Last updated: August 30, 2026',
 
     privacyS1Title: '1. Introduction',
     privacyS1P1: 'CalX ("we", "our", "the Application") is a mobile nutrition and fitness application developed and published by CalX. Protecting your personal data is our absolute priority.',
@@ -202,6 +202,8 @@ const en: Translations = {
     privacyS5F4: 'PDF menu generation: creation of personalized meal plans.',
     privacyS5Warn: 'Important: The results provided by AI are estimates and not exact measurements. They do not constitute medical or professional dietary advice under any circumstances. Consult a healthcare professional for any specific medical needs.',
     privacyS5End: 'Photos sent to Google Gemini are processed in real time and are not stored by Google beyond the processing of the request, in accordance with Google Cloud\'s customer data policy.',
+
+    privacyS5Consent: 'Consent: these features only activate after your explicit agreement, requested in the app before any data is sent to the AI service. The consent prompt states which data is transmitted (meal and ingredient photos; profile — age, sex, height, weight, goals, dietary preferences, allergies; meals, coach messages and activity summary) and to whom (Google Gemini, through CalX\'s secure servers). You can withdraw your consent at any time from the app\'s Profile screen; AI features are then disabled while the rest of the app keeps working normally.',
 
     privacyS6Title: '6. Legal basis for processing',
     privacyS6Intro: 'We process your data on the following legal bases (Article 6 of the GDPR):',

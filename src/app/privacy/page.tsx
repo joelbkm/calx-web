@@ -94,6 +94,7 @@ export default function PrivacyPage() {
                         </ul>
                         <p><strong>{t.privacyS5Warn}</strong></p>
                         <p>{t.privacyS5End}</p>
+                        <p><strong>{t.privacyS5Consent}</strong></p>
                     </Section>
 
                     <Section title={t.privacyS6Title}>
