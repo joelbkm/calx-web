@@ -112,6 +112,7 @@ export default function PrivacyPage() {
                             <li>{t.privacyS7F1}</li>
                             <li>{t.privacyS7F2}</li>
                             <li>{t.privacyS7F3}</li>
+                            <li>{t.privacyS7F4}</li>
                         </ul>
                     </Section>
 

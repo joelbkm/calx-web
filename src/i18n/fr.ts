@@ -216,6 +216,8 @@ const fr = {
     privacyS7F2: 'Google Gemini AI : traitement des requêtes d\'analyse nutritionnelle et de coaching. Les données sont traitées conformément aux conditions de Google Cloud.',
     privacyS7F3: 'OpenFoodFacts : consultation de la base de données nutritionnelle (aucune donnée personnelle n\'est transmise, uniquement le code-barres scanné).',
 
+    privacyS7F4: 'Resend (envoi d\'e-mails) : lorsque vous demandez l\'envoi d\'un menu ou d\'une recette par e-mail, votre adresse et le document généré transitent par Resend, notre prestataire d\'envoi, uniquement pour acheminer cet e-mail.',
+
     privacyS8Title: '8. Durée de conservation',
     privacyS8Intro: 'Nous conservons vos données personnelles aussi longtemps que votre compte est actif. En cas de suppression de votre compte :',
     privacyS8F1: 'Votre demande de suppression déclenche un délai de grâce de 15 jours durant lequel vous pouvez annuler la suppression (banner dans l\'app + lien dans l\'email). Passé ce délai, toutes vos données personnelles (profil, repas, exercices, photos, messages, abonnement, etc.) sont supprimées de manière irréversible sous 24 heures supplémentaires.',
