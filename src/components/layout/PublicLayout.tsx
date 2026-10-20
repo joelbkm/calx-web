@@ -2,136 +2,93 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState } from 'react';
+import { DM_Sans, Playfair_Display } from 'next/font/google';
+import { useEffect, useState, type ReactNode } from 'react';
+import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
-import type { ReactNode } from 'react';
-import { useI18n } from '@/i18n';
-import LanguageSelector from '@/components/LanguageSelector';
+import { useI18n, type Locale } from '@/i18n';
+import { marketing, publicLabels } from '@/components/public/content';
+import '@/components/public/public.css';
+
+const sans = DM_Sans({ subsets: ['latin'], display: 'swap', variable: '--font-public-sans' });
+const serif = Playfair_Display({ subsets: ['latin'], display: 'swap', variable: '--font-public-serif' });
 
 export default function PublicLayout({ children }: { children: ReactNode }) {
-    const { t } = useI18n();
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const { locale, setLocale } = useI18n();
+    const copy = marketing[locale];
+    const labels = publicLabels[locale];
+    const [menuOpen, setMenuOpen] = useState(false);
+    const pathname = usePathname();
+    useEffect(() => {
+        // Public pages share their shell. Start a new page at its heading,
+        // while preserving anchors used by app deep links and the navigation.
+        const frame = requestAnimationFrame(() => {
+            const anchor = window.location.hash.slice(1);
+            if (anchor) document.getElementById(anchor)?.scrollIntoView();
+            else window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+        });
+        return () => cancelAnimationFrame(frame);
+    }, [pathname]);
 
-    const NAV_LINKS = [
-        { label: t.navFeatures, href: '/#features' },
-        { label: t.navAdvantages, href: '/#advantages' },
-        { label: t.navPricing, href: '/#download' },
+    function changeLocale(next: Locale) {
+        setLocale(next);
+        const url = new URL(window.location.href);
+        url.searchParams.set('lang', next);
+        window.history.replaceState(window.history.state, '', url);
+    }
+    const home = `/?lang=${locale}`;
+    const links = [
+        { text: copy.navFeatures, href: `${home}#features` },
+        { text: copy.navBenefits, href: `${home}#advantages` },
     ];
 
     return (
-        <div className="min-h-screen bg-calx-bg">
-            {/* Navbar */}
-            <header className="fixed top-0 inset-x-0 z-50 backdrop-blur-xl bg-calx-bg/80 border-b border-calx-surface/50">
-                <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-                    <Link href="/" className="flex items-center gap-2">
-                        <Image
-                            src="/officel_web_logo.png"
-                            alt="CalX Logo"
-                            width={40}
-                            height={40}
-                            className="object-contain"
-                        />
-                    </Link>
-
-                    {/* Desktop Nav */}
-                    <div className="hidden md:flex items-center gap-8">
-                        {NAV_LINKS.map((link) => (
-                            <Link
-                                key={link.href}
-                                href={link.href}
-                                className="text-sm text-calx-text-secondary hover:text-calx-text transition-colors"
-                            >
-                                {link.label}
-                            </Link>
-                        ))}
-                        {/* Admin link removed from public nav for security through obscurity.
-                            Admins access the back-office via the obscure /cockpit/admin path. */}
-                        <LanguageSelector />
-                        <Link
-                            href="/#download"
-                            className="px-4 py-2 bg-gradient-to-r from-gold-400 to-gold-600 text-black font-semibold text-sm rounded-full hover:shadow-lg hover:shadow-gold-400/25 transition-all"
-                        >
-                            {t.navDownload}
+        <div className={`calx-public ${sans.variable} ${serif.variable}`}>
+            <a className="cx-skip" href="#main-content">{labels.skip}</a>
+            <header className="cx-header">
+                <div className="cx-wrap">
+                    <div className="cx-nav">
+                        <Link className="cx-brand" href={home} aria-label="CalX">
+                            <Image src="/officel_web_logo.png" width={36} height={36} alt="" />
+                            <span>CalX</span>
                         </Link>
-                    </div>
-
-                    {/* Mobile menu button */}
-                    <div className="flex items-center gap-3 md:hidden">
-                        <LanguageSelector />
-                        <button
-                            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                            className="p-2 text-calx-text-secondary hover:text-calx-text"
-                        >
-                            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                        </button>
-                    </div>
-                </nav>
-
-                {/* Mobile menu */}
-                {mobileMenuOpen && (
-                    <div className="md:hidden border-t border-calx-surface bg-calx-bg px-4 py-4 space-y-3">
-                        {NAV_LINKS.map((link) => (
-                            <Link
-                                key={link.href}
-                                href={link.href}
-                                className="block py-2 text-calx-text-secondary hover:text-calx-text transition-colors"
-                                onClick={() => setMobileMenuOpen(false)}
-                            >
-                                {link.label}
-                            </Link>
-                        ))}
-                        <Link
-                            href="/#download"
-                            className="block w-full text-center px-4 py-2.5 bg-gradient-to-r from-gold-400 to-gold-600 text-black font-semibold text-sm rounded-full"
-                            onClick={() => setMobileMenuOpen(false)}
-                        >
-                            {t.navDownloadCalx}
-                        </Link>
-                    </div>
-                )}
-            </header>
-
-            {/* Content */}
-            <main className="pt-16">{children}</main>
-
-            {/* Footer */}
-            <footer className="border-t border-calx-surface bg-calx-bg">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-                        <div className="md:col-span-2">
-                            <Image
-                                src="/officel_web_logo.png"
-                                alt="CalX Logo"
-                                width={36}
-                                height={36}
-                                className="object-contain"
-                            />
-                            <p className="mt-3 text-calx-text-secondary text-sm max-w-md">
-                                {t.footerDesc}
-                            </p>
-                        </div>
-                        <div>
-                            <h4 className="text-calx-text font-semibold mb-3">{t.footerApp}</h4>
-                            <ul className="space-y-2 text-sm text-calx-text-secondary">
-                                <li><Link href="/#features" className="hover:text-calx-text transition-colors">{t.footerFeatures}</Link></li>
-                                <li><Link href="/#download" className="hover:text-calx-text transition-colors">{t.footerPricing}</Link></li>
-                                <li><Link href="/#download" className="hover:text-calx-text transition-colors">{t.footerDownload}</Link></li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 className="text-calx-text font-semibold mb-3">{t.footerLegal}</h4>
-                            <ul className="space-y-2 text-sm text-calx-text-secondary">
-                                <li><Link href="/privacy" className="hover:text-calx-text transition-colors">{t.footerPrivacy}</Link></li>
-                                <li><Link href="/terms" className="hover:text-calx-text transition-colors">{t.footerTerms}</Link></li>
-                                <li><a href="mailto:contact@calx.be" className="hover:text-calx-text transition-colors">{t.footerContact}</a></li>
-                            </ul>
+                        <nav className="cx-navlinks" aria-label={labels.journey}>
+                            {links.map(link => <Link key={link.href} href={link.href}>{link.text}</Link>)}
+                        </nav>
+                        <div className="cx-navright">
+                            <div className="cx-languages" role="group" aria-label="Language / Langue">
+                                {(['fr', 'en'] as const).map(lang => (
+                                    <button key={lang} type="button" lang={lang} aria-label={lang === 'fr' ? 'Français' : 'English'} aria-pressed={locale === lang} onClick={() => changeLocale(lang)}>
+                                        {lang.toUpperCase()}
+                                    </button>
+                                ))}
+                            </div>
+                            <Link className="cx-smallcta" href={`${home}#download`}>{copy.download}</Link>
+                            <button className="cx-menu-toggle" type="button" aria-label={menuOpen ? labels.close : labels.menu} aria-expanded={menuOpen} aria-controls="public-mobile-menu" onClick={() => setMenuOpen(open => !open)}>
+                                {menuOpen ? <X size={22} /> : <Menu size={22} />}
+                            </button>
                         </div>
                     </div>
-                    <div className="mt-8 pt-8 border-t border-calx-surface text-center text-xs text-calx-text-muted">
-                        © {new Date().getFullYear()} CalX. {t.footerRights}
-                    </div>
+                    {menuOpen && (
+                        <nav id="public-mobile-menu" className="cx-mobile-menu" aria-label={labels.journey} onKeyDown={event => { if (event.key === 'Escape') setMenuOpen(false); }}>
+                            {[...links, { text: copy.download, href: `${home}#download` }].map(link => (
+                                <Link key={link.href} href={link.href} onClick={() => setMenuOpen(false)}>{link.text}</Link>
+                            ))}
+                        </nav>
+                    )}
                 </div>
-            </footer>
+            </header>
+            <main id="main-content" tabIndex={-1}>{children}</main>
+            <div className="cx-wrap">
+                <footer className="cx-footer">
+                    <Link href={home} className="cx-brand">CalX <small>© {new Date().getFullYear()}</small></Link>
+                    <nav className="cx-footlinks" aria-label={locale === 'fr' ? 'Informations' : 'Information'}>
+                        <Link href={`/privacy/?lang=${locale}`}>{copy.privacy}</Link>
+                        <Link href={`/terms/?lang=${locale}`}>{copy.terms}</Link>
+                        <a href="mailto:contact@calx.be">contact@calx.be</a>
+                    </nav>
+                </footer>
+            </div>
         </div>
     );
 }

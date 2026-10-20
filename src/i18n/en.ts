@@ -160,7 +160,7 @@ const en: Translations = {
     legalBadge: 'Legal document',
     privacyTitle1: 'Privacy ',
     privacyTitle2: 'Policy',
-    lastUpdated: 'Last updated: March 8, 2026',
+    lastUpdated: 'Last updated: August 30, 2026',
 
     privacyS1Title: '1. Introduction',
     privacyS1P1: 'CalX ("we", "our", "the Application") is a mobile nutrition and fitness application developed and published by CalX. Protecting your personal data is our absolute priority.',
@@ -203,6 +203,8 @@ const en: Translations = {
     privacyS5Warn: 'Important: The results provided by AI are estimates and not exact measurements. They do not constitute medical or professional dietary advice under any circumstances. Consult a healthcare professional for any specific medical needs.',
     privacyS5End: 'Photos sent to Google Gemini are processed in real time and are not stored by Google beyond the processing of the request, in accordance with Google Cloud\'s customer data policy.',
 
+    privacyS5Consent: 'Consent: these features only activate after your explicit agreement, requested in the app before any data is sent to the AI service. The consent prompt states which data is transmitted (meal and ingredient photos; profile — age, sex, height, weight, goals, dietary preferences, allergies; meals, coach messages and activity summary) and to whom (Google Gemini, through CalX\'s secure servers). You can withdraw your consent at any time from the app\'s Profile screen; AI features are then disabled while the rest of the app keeps working normally.',
+
     privacyS6Title: '6. Legal basis for processing',
     privacyS6Intro: 'We process your data on the following legal bases (Article 6 of the GDPR):',
     privacyS6F1: 'Consent (Art. 6.1.a): for biometric and health data, camera access, GPS geolocation, and progress photos.',
@@ -214,6 +216,8 @@ const en: Translations = {
     privacyS7F1: 'Google Cloud / Firebase: hosting and infrastructure (servers located in the EU and the United States). Transfer to the United States is governed by the EU-US Data Privacy Framework.',
     privacyS7F2: 'Google Gemini AI: processing nutritional analysis and coaching requests. Data is processed in accordance with Google Cloud terms.',
     privacyS7F3: 'OpenFoodFacts: consulting the nutritional database (no personal data is transmitted, only the scanned barcode).',
+
+    privacyS7F4: 'Resend (email delivery): when you ask for a menu or recipe to be emailed to you, your address and the generated document pass through Resend, our email delivery provider, solely to deliver that email.',
 
     privacyS8Title: '8. Data retention',
     privacyS8Intro: 'We retain your personal data for as long as your account is active. Upon account deletion:',

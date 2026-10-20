@@ -21,6 +21,7 @@ import {
     Mail,
     Smartphone,
     Gift,
+    Star,
     LogOut,
     ChevronLeft,
     ChevronRight,
@@ -49,6 +50,7 @@ const NAV_ITEMS: NavItem[] = [
     { label: 'Suppressions', href: '/dashboard/deletions', icon: <UserMinus size={20} />, module: 'users' },
     { label: 'Suppr. programmées', href: '/dashboard/scheduled-deletions', icon: <Clock size={20} />, module: 'users' },
     { label: 'Support', href: '/dashboard/support', icon: <MessageSquare size={20} />, module: 'support' },
+    { label: 'Avis clients', href: '/dashboard/feedback', icon: <Star size={20} />, module: 'support' },
     { label: 'Paramètres Email', href: '/dashboard/email', icon: <Mail size={20} />, module: 'email' },
 ];
 

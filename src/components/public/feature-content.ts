@@ -1,0 +1,173 @@
+import type { Locale } from '@/i18n';
+
+const fr = {
+    eyebrow: 'Bien plus que des calories',
+    title: 'Une app. Toutes tes bonnes habitudes.',
+    intro: 'De ton assiette à ta prochaine séance, CalX réunit la nutrition, le mouvement et la motivation au même endroit.',
+    explore: 'Découvrir',
+    overview: [
+        { title: 'Nutrition', body: 'Photo, voix, code-barres ou saisie manuelle.' },
+        { title: 'Course & activité', body: 'Tes séances, ton allure et tes calories dépensées.' },
+        { title: 'Coach IA', body: 'Conseils, recettes et menus de la semaine.' },
+        { title: 'Ta progression', body: 'Poids, objectifs, macros et régularité.' },
+        { title: 'Tes Squads', body: 'Partage, échanges et encouragements.' },
+        { title: 'Tes bilans', body: 'Tes données à retrouver en PDF ou Excel.' },
+    ],
+    nutrition: {
+        eyebrow: 'À chacun sa façon de noter un repas',
+        title: 'Photographie. Dicte. Scanne. Ou écris.',
+        body: 'Un plat maison ou un produit emballé : choisis la méthode qui te convient et retrouve le repas dans ton journal.',
+        methods: [
+            { title: 'Une photo de ton assiette', body: 'L’IA repère les aliments et estime les portions, calories et macronutriments.' },
+            { title: 'Quelques mots à voix haute', body: 'Décris ce que tu as mangé. CalX transforme ta dictée en repas à enregistrer.' },
+            { title: 'Un code-barres', body: 'Retrouve les informations nutritionnelles d’un produit référencé dans Open Food Facts.' },
+            { title: 'Une saisie à la main', body: 'Ajoute un repas manuellement et renseigne ses apports selon tes besoins.' },
+        ],
+    },
+    running: {
+        eyebrow: 'Course, marche & bien plus',
+        title: 'Bouge à ta façon. Chaque effort compte.',
+        body: 'Pars courir, marche ou monte sur ton vélo. Pendant ta séance, retrouve les informations utiles pour suivre ton effort, puis garde ton activité dans ton historique.',
+        visualTitle: 'Trouve ton rythme.',
+        visualSubtitle: 'Tes efforts prennent leur place.',
+        alt: 'Visuel CalX AppScreens : une coureuse, la carte de séance et des exemples de distance, d’allure et de fréquence cardiaque.',
+        metrics: [
+            { title: 'Distance, durée et allure', body: 'Les données de ta séance GPS sont réunies sur le même écran, avec une carte pendant l’activité.' },
+            { title: 'Calories dépensées', body: 'L’estimation de ta dépense s’ajoute à ton suivi d’activité pour compléter ta journée.' },
+            { title: 'Rythme cardiaque', body: 'Retrouve les BPM lorsqu’une montre ou une source de santé compatible fournit ces données.' },
+        ],
+        activities: ['Course', 'Marche', 'Vélo', 'Musculation', 'Natation', 'Yoga', 'Randonnée', 'Autres activités'],
+        voiceTitle: 'Ta séance peut aussi se dicter.',
+        voiceBody: 'Décris ton exercice à la voix pour l’ajouter à ton suivi, même sans séance GPS.',
+        note: 'Le GPS nécessite l’accès à la localisation. Les BPM dépendent du matériel, des autorisations et des données de santé disponibles.',
+    },
+    coach: {
+        eyebrow: 'Ton coach IA, à tes côtés',
+        title: 'Des ingrédients aux idées. Des idées à l’assiette.',
+        body: 'Pose tes questions sur la nutrition ou le sport. À partir de tes objectifs, de tes préférences et de tes ingrédients, CalX t’aide à préparer la suite.',
+        features: [
+            { title: 'Montre ce qu’il y a dans ton frigo', body: 'Photographie tes ingrédients pour obtenir des idées de recettes adaptées.' },
+            { title: 'Prépare ta semaine', body: 'Génère un menu sur 7 jours avec petits-déjeuners, repas et collations.' },
+            { title: 'Passe en cuisine', body: 'Retrouve les ingrédients, les étapes, les portions et les apports nutritionnels des recettes.' },
+            { title: 'Emporte tes recettes', body: 'Télécharge tes recettes et menus en PDF ou demande leur envoi par e-mail.' },
+        ],
+        tags: ['Conversation écrite ou vocale', 'Recettes depuis une photo', 'Menus de la semaine'],
+        badge: 'Une idée pour ce soir ?',
+        badgeSub: 'Ingrédients · étapes · apports',
+    },
+    progress: {
+        eyebrow: 'Un cap qui te ressemble',
+        title: 'Vois le chemin parcouru.',
+        body: 'Perte, maintien ou prise de poids : suis un objectif personnel et retrouve ton évolution au fil des jours.',
+        features: ['Courbe de poids et historique des pesées', 'Objectifs de calories et de macronutriments', 'Tableau de bord, Activity Score et séries de régularité'],
+        badge: 'Tes progrès, à ton rythme.',
+    },
+    exports: {
+        eyebrow: 'Tes données t’accompagnent',
+        title: 'Tout ton suivi, à emporter.',
+        body: 'Choisis une période et retrouve tes repas, tes exercices et ton évolution dans un bilan que tu peux conserver.',
+        features: ['Rapport visuel en PDF', 'Données en Excel', 'Téléchargement ou envoi par e-mail'],
+        badge: 'PDF & Excel',
+    },
+    squads: {
+        eyebrow: 'La motivation se partage',
+        title: 'Ensemble, on avance.',
+        body: 'Crée ton Squad ou rejoins tes proches. Partage tes repas, tes séances et tes réussites pour vous encourager au quotidien.',
+        center: 'Ton Squad',
+        caption: 'Repas · séances · progrès',
+        features: [
+            { title: 'Un groupe à vous', body: 'Invite tes proches avec un code ou un QR code et retrouve-les dans votre Squad.' },
+            { title: 'Des encouragements au quotidien', body: 'Échange dans le groupe et réagis aux repas, aux exercices et aux progrès partagés.' },
+            { title: 'Ton évolution en images', body: 'Ajoute tes photos d’évolution pour garder une trace visuelle de ton parcours et la partager avec ton Squad.' },
+        ],
+    },
+    availability: 'Certaines fonctions IA et certains exports nécessitent un abonnement, selon l’offre choisie dans l’application.',
+};
+
+type CopyShape<T> = T extends string ? string : T extends readonly (infer U)[] ? readonly CopyShape<U>[] : { [K in keyof T]: CopyShape<T[K]> };
+
+const en: CopyShape<typeof fr> = {
+    eyebrow: 'More than calories',
+    title: 'One app. All your everyday habits.',
+    intro: 'From your plate to your next workout, CalX brings nutrition, movement and motivation together.',
+    explore: 'Explore',
+    overview: [
+        { title: 'Nutrition', body: 'Photo, voice, barcode or manual entry.' },
+        { title: 'Running & activity', body: 'Your workouts, pace and calories burned.' },
+        { title: 'AI coach', body: 'Advice, recipes and weekly meal plans.' },
+        { title: 'Your progress', body: 'Weight, goals, macros and consistency.' },
+        { title: 'Your Squads', body: 'Sharing, conversations and encouragement.' },
+        { title: 'Your reports', body: 'Your data, ready to go in PDF or Excel.' },
+    ],
+    nutrition: {
+        eyebrow: 'Your meal, your way',
+        title: 'Snap. Speak. Scan. Or type.',
+        body: 'A homemade meal or a packaged product: choose how to log it and find it in your food diary.',
+        methods: [
+            { title: 'A photo of your plate', body: 'AI identifies foods and estimates portions, calories and macronutrients.' },
+            { title: 'A few words out loud', body: 'Describe what you ate. CalX turns your voice entry into a meal to save.' },
+            { title: 'A barcode', body: 'Look up nutritional information for a product listed in Open Food Facts.' },
+            { title: 'Manual entry', body: 'Add a meal yourself and enter its nutritional values to suit your needs.' },
+        ],
+    },
+    running: {
+        eyebrow: 'Running, walking & more',
+        title: 'Move your way. Make every effort count.',
+        body: 'Go for a run, take a walk or get on your bike. See useful information during your workout, then keep your activity in your history.',
+        visualTitle: 'Find your stride.',
+        visualSubtitle: 'Make room for every effort.',
+        alt: 'CalX AppScreens artwork: a runner, a workout map and example distance, pace and heart rate readings.',
+        metrics: [
+            { title: 'Distance, duration and pace', body: 'See your GPS workout information together, with a map during your activity.' },
+            { title: 'Calories burned', body: 'Estimated energy expenditure joins your activity log to complete your daily overview.' },
+            { title: 'Heart rate', body: 'See BPM when a compatible watch or health data source provides readings.' },
+        ],
+        activities: ['Running', 'Walking', 'Cycling', 'Strength training', 'Swimming', 'Yoga', 'Hiking', 'Other activities'],
+        voiceTitle: 'You can speak your workout, too.',
+        voiceBody: 'Describe your exercise out loud to add it to your log, even without a GPS session.',
+        note: 'GPS requires location access. BPM readings depend on compatible hardware, permissions and available health data.',
+    },
+    coach: {
+        eyebrow: 'Your AI coach, by your side',
+        title: 'From ingredients to ideas. From ideas to dinner.',
+        body: 'Ask questions about nutrition or exercise. With your goals, preferences and ingredients in mind, CalX helps you plan what comes next.',
+        features: [
+            { title: 'Show what’s in your fridge', body: 'Photograph your ingredients to get recipe ideas tailored to you.' },
+            { title: 'Plan your week', body: 'Generate a 7-day menu with breakfasts, meals and snacks.' },
+            { title: 'Get cooking', body: 'Find ingredients, steps, servings and nutritional estimates in your recipes.' },
+            { title: 'Take your recipes with you', body: 'Download recipes and menus as PDFs or have them sent by email.' },
+        ],
+        tags: ['Text or voice conversation', 'Recipes from a photo', 'Weekly meal plans'],
+        badge: 'An idea for tonight?',
+        badgeSub: 'Ingredients · steps · nutrition',
+    },
+    progress: {
+        eyebrow: 'A goal that feels like you',
+        title: 'See how far you’ve come.',
+        body: 'Lose, maintain or gain weight: follow a personal goal and revisit your progress over time.',
+        features: ['Weight chart and weigh-in history', 'Calorie and macronutrient goals', 'Dashboard, Activity Score and consistency streaks'],
+        badge: 'Your progress, at your pace.',
+    },
+    exports: {
+        eyebrow: 'Keep your data close',
+        title: 'Your whole journey, ready to go.',
+        body: 'Choose a time period and bring your meals, workouts and progress together in a report you can keep.',
+        features: ['Visual PDF report', 'Data in Excel', 'Download or send by email'],
+        badge: 'PDF & Excel',
+    },
+    squads: {
+        eyebrow: 'Share the motivation',
+        title: 'Go further, together.',
+        body: 'Create a Squad or join people you know. Share meals, workouts and achievements to encourage each other every day.',
+        center: 'Your Squad',
+        caption: 'Meals · workouts · progress',
+        features: [
+            { title: 'Your own group', body: 'Invite friends with a code or QR code and meet them in your Squad.' },
+            { title: 'Everyday encouragement', body: 'Chat with the group and react to shared meals, workouts and progress.' },
+            { title: 'Your progress in pictures', body: 'Add progress photos to keep a visual record of your journey and share it with your Squad.' },
+        ],
+    },
+    availability: 'Some AI features and exports require a subscription, depending on the plan selected in the app.',
+};
+
+export const featureContent: Record<Locale, CopyShape<typeof fr>> = { fr, en };
