@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 import type { Locale } from '@/i18n';
 import { publicLabels } from './content';
 
-export type PreviewScreen = 'dashboard' | 'scan' | 'diary' | 'progress';
+export type PreviewScreen = 'dashboard' | 'scan' | 'diary' | 'progress' | 'coach' | 'export';
 
 export default function PhonePreview({ locale, screen, className = '', priority = false, children }: { locale: Locale; screen: PreviewScreen; className?: string; priority?: boolean; children?: ReactNode }) {
     return (

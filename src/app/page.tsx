@@ -2,10 +2,11 @@
 
 import { useRef, useState, type KeyboardEvent } from 'react';
 import Image from 'next/image';
-import { Activity, ArrowDownRight, ArrowUpRight, Camera, ChartNoAxesCombined, ChefHat, CircleCheck, Download, FileDown, Languages, Smartphone, Sparkles } from 'lucide-react';
+import { ArrowDownRight, ArrowUpRight, Camera, ChartNoAxesCombined, CircleCheck, Footprints, Languages, Smartphone } from 'lucide-react';
 import PublicLayout from '@/components/layout/PublicLayout';
 import PhonePreview, { type PreviewScreen } from '@/components/public/PhonePreview';
 import DownloadLinks from '@/components/public/DownloadLinks';
+import FeatureShowcase from '@/components/public/FeatureShowcase';
 import { marketing, publicLabels } from '@/components/public/content';
 import { useI18n } from '@/i18n';
 
@@ -22,11 +23,7 @@ export default function HomePage() {
         { title: copy.step2title, body: copy.step2body },
         { title: copy.step3title, body: copy.step3body },
     ];
-    const benefits = [
-        { Icon: ChefHat, title: copy.coachTitle, body: copy.coachBody, end: copy.coachEnd, EndIcon: Sparkles },
-        { Icon: Activity, title: copy.activityTitle, body: copy.activityBody, end: copy.activityEnd, EndIcon: ChartNoAxesCombined },
-        { Icon: FileDown, title: copy.exportTitle, body: copy.exportBody, end: copy.exportEnd, EndIcon: Download },
-    ];
+
 
     function navigateTabs(event: KeyboardEvent<HTMLButtonElement>, index: number) {
         let next: number;
@@ -66,7 +63,7 @@ export default function HomePage() {
 
             <div className="cx-wrap">
                 <div className="cx-strip">
-                    {[{ Icon: Camera, text: copy.strip1 }, { Icon: Sparkles, text: copy.strip2 }, { Icon: ChartNoAxesCombined, text: copy.strip3 }].map(({ Icon, text }) => (
+                    {[{ Icon: Camera, text: copy.strip1 }, { Icon: Footprints, text: copy.strip2 }, { Icon: ChartNoAxesCombined, text: copy.strip3 }].map(({ Icon, text }) => (
                         <div className="cx-stripitem" key={text}><Icon size={23} aria-hidden="true" /><strong>{text}</strong></div>
                     ))}
                 </div>
@@ -95,16 +92,7 @@ export default function HomePage() {
                 </div>
             </section>
 
-            <section className="cx-capabilities cx-wrap" id="advantages" aria-labelledby="benefits-title">
-                <h2 id="benefits-title">{copy.capTitle}</h2>
-                <div className="cx-capgrid">
-                    {benefits.map(({ Icon, title, body, end, EndIcon }) => (
-                        <article className="cx-cap" key={title}>
-                            <Icon size={26} className="cx-cap-icon" aria-hidden="true" /><h3>{title}</h3><p>{body}</p><span className="cx-cap-end"><EndIcon size={14} aria-hidden="true" /><span>{end}</span></span>
-                        </article>
-                    ))}
-                </div>
-            </section>
+            <FeatureShowcase />
 
             <div className="cx-wrap">
                 <section className="cx-download" id="download" aria-labelledby="download-title">

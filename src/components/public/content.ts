@@ -9,7 +9,7 @@ export const marketing = {
         "eyebrow": "Nutrition & fitness, à ton rythme",
         "hero1": "Mange bien.",
         "hero2": "Vis pleinement.",
-        "heroBody": "Une photo de ton repas. Une vision claire de tes apports. Et un peu plus d’équilibre, chaque jour.",
+        "heroBody": "Tes repas, tes séances et tes progrès, au même endroit. CalX t’accompagne de l’assiette à la course, jour après jour.",
         "getApp": "Télécharger CalX",
         "explore": "Découvrir l’application",
         "platforms": "iPhone & Android",
@@ -17,7 +17,7 @@ export const marketing = {
         "noteTitle": "Ta journée, en un regard.",
         "noteSub": "Repas · activité · objectifs",
         "strip1": "Photographie ton repas",
-        "strip2": "Découvre ses apports",
+        "strip2": "Bouge et suis tes séances",
         "strip3": "Avance vers ton objectif",
         "journeyEyebrow": "De l’assiette à tes progrès",
         "journeyTitle1": "Une photo.",
@@ -55,7 +55,7 @@ export const marketing = {
         "eyebrow": "Nutrition & fitness, made personal",
         "hero1": "Eat well.",
         "hero2": "Live fully.",
-        "heroBody": "A photo of your meal. A clearer view of your nutrition. And a little more balance, every day.",
+        "heroBody": "Your meals, workouts and progress in one place. From your plate to your next run, CalX is with you every day.",
         "getApp": "Download CalX",
         "explore": "Explore the app",
         "platforms": "iPhone & Android",
@@ -63,7 +63,7 @@ export const marketing = {
         "noteTitle": "Your day, at a glance.",
         "noteSub": "Meals · movement · goals",
         "strip1": "Snap your meal",
-        "strip2": "See its nutrition",
+        "strip2": "Move and track your workouts",
         "strip3": "Move toward your goal",
         "journeyEyebrow": "From your plate to your progress",
         "journeyTitle1": "One photo.",
@@ -111,7 +111,7 @@ type PublicLabels = {
     storesError: string;
     heroAlt: string;
     mealAlt: string;
-    screenshots: Record<"dashboard" | "scan" | "diary" | "progress", string>;
+    screenshots: Record<"dashboard" | "scan" | "diary" | "progress" | "coach" | "export", string>;
 };
 
 export const publicLabels: Record<Locale, PublicLabels> = {
@@ -134,7 +134,9 @@ export const publicLabels: Record<Locale, PublicLabels> = {
             "dashboard": "Tableau de bord CalX : calories, macronutriments et activité.",
             "scan": "Analyse du repas : aliments, calories et macronutriments estimés.",
             "diary": "Journal alimentaire CalX avec calendrier et objectif quotidien.",
-            "progress": "Évolution du poids dans CalX."
+            "progress": "Évolution du poids dans CalX.",
+            "coach": "Coach IA CalX : recette détaillée, ingrédients, apports nutritionnels et menu de la semaine.",
+            "export": "Export des données CalX par période : PDF, Excel, téléchargement ou envoi par e-mail."
         }
     },
     "en": {
@@ -156,7 +158,9 @@ export const publicLabels: Record<Locale, PublicLabels> = {
             "dashboard": "CalX dashboard: calories, macros and activity.",
             "scan": "Meal analysis: identified foods and estimated calories and macros.",
             "diary": "CalX food diary with calendar and daily goal.",
-            "progress": "Weight progress in CalX."
+            "progress": "Weight progress in CalX.",
+            "coach": "CalX AI coach: recipe details, ingredients, nutrition and weekly meal plans.",
+            "export": "CalX data export by period: PDF, Excel, download or email."
         }
     }
 };
