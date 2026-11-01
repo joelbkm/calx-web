@@ -7,14 +7,16 @@ import { useEffect, useState, type ReactNode } from 'react';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import { useI18n, type Locale } from '@/i18n';
+import { localizedPath, alternatePath, guideEntries } from '@/seo/content';
 import { marketing, publicLabels } from '@/components/public/content';
 import '@/components/public/public.css';
+import '@/components/public/seo.css';
 
 const sans = DM_Sans({ subsets: ['latin'], display: 'swap', variable: '--font-public-sans' });
 const serif = Playfair_Display({ subsets: ['latin'], display: 'swap', variable: '--font-public-serif' });
 
 export default function PublicLayout({ children }: { children: ReactNode }) {
-    const { locale, setLocale } = useI18n();
+    const { locale, setLocale, fixedLocale } = useI18n();
     const copy = marketing[locale];
     const labels = publicLabels[locale];
     const [menuOpen, setMenuOpen] = useState(false);
@@ -36,7 +38,7 @@ export default function PublicLayout({ children }: { children: ReactNode }) {
         url.searchParams.set('lang', next);
         window.history.replaceState(window.history.state, '', url);
     }
-    const home = `/?lang=${locale}`;
+    const home = fixedLocale ? localizedPath(locale, '') : `/?lang=${locale}`;
     const links = [
         { text: copy.navFeatures, href: `${home}#features` },
         { text: copy.navBenefits, href: `${home}#advantages` },
@@ -58,9 +60,9 @@ export default function PublicLayout({ children }: { children: ReactNode }) {
                         <div className="cx-navright">
                             <div className="cx-languages" role="group" aria-label="Language / Langue">
                                 {(['fr', 'en'] as const).map(lang => (
-                                    <button key={lang} type="button" lang={lang} aria-label={lang === 'fr' ? 'Français' : 'English'} aria-pressed={locale === lang} onClick={() => changeLocale(lang)}>
+                                    <span key={lang}>{fixedLocale ? <a href={alternatePath(pathname, lang)} hrefLang={lang} aria-label={lang === 'fr' ? 'Français' : 'English'} aria-current={locale === lang ? 'page' : undefined}>{lang.toUpperCase()}</a> : <button type="button" lang={lang} aria-label={lang === 'fr' ? 'Français' : 'English'} aria-pressed={locale === lang} onClick={() => changeLocale(lang)}>
                                         {lang.toUpperCase()}
-                                    </button>
+                                    </button>}</span>
                                 ))}
                             </div>
                             <Link className="cx-smallcta" href={`${home}#download`}>{copy.download}</Link>
@@ -83,8 +85,9 @@ export default function PublicLayout({ children }: { children: ReactNode }) {
                 <footer className="cx-footer">
                     <Link href={home} className="cx-brand">CalX <small>© {new Date().getFullYear()}</small></Link>
                     <nav className="cx-footlinks" aria-label={locale === 'fr' ? 'Informations' : 'Information'}>
-                        <Link href={`/privacy/?lang=${locale}`}>{copy.privacy}</Link>
-                        <Link href={`/terms/?lang=${locale}`}>{copy.terms}</Link>
+                        <Link href={fixedLocale ? localizedPath(locale, 'privacy') : `/privacy/?lang=${locale}`}>{copy.privacy}</Link>
+                        <Link href={fixedLocale ? localizedPath(locale, 'terms') : `/terms/?lang=${locale}`}>{copy.terms}</Link>
+                        {guideEntries(locale).map(guide => <Link key={guide.id} href={localizedPath(locale, guide.id)}>{guide.label}</Link>)}
                         <a href="mailto:contact@calx.be">contact@calx.be</a>
                     </nav>
                 </footer>

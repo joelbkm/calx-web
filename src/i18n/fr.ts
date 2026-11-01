@@ -220,7 +220,7 @@ const fr = {
 
     privacyS8Title: '8. Durée de conservation',
     privacyS8Intro: 'Nous conservons vos données personnelles aussi longtemps que votre compte est actif. En cas de suppression de votre compte :',
-    privacyS8F1: 'Votre demande de suppression déclenche un délai de grâce de 15 jours durant lequel vous pouvez annuler la suppression (banner dans l\'app + lien dans l\'email). Passé ce délai, toutes vos données personnelles (profil, repas, exercices, photos, messages, abonnement, etc.) sont supprimées de manière irréversible sous 24 heures supplémentaires.',
+    privacyS8F1: 'Votre demande de suppression déclenche un délai de grâce de 30 jours durant lequel vous pouvez annuler la suppression (banner dans l\'app + lien dans l\'email). Passé ce délai, toutes vos données personnelles (profil, repas, exercices, photos, messages, abonnement, etc.) sont supprimées de manière irréversible sous 24 heures supplémentaires.',
     privacyS8F2: 'Les données agrégées et anonymisées à des fins statistiques peuvent être conservées indéfiniment (ces données ne permettent plus de vous identifier).',
     privacyS8F3: 'Les conversations avec le Coach IA sont supprimées avec le compte.',
     privacyS8F4: 'Pour des raisons techniques (sauvegardes de sécurité), certaines données résiduelles peuvent persister jusqu\'à 30 jours après la suppression, mais ne sont accessibles à aucun utilisateur ni à notre équipe en dehors d\'une procédure de restauration d\'urgence.',

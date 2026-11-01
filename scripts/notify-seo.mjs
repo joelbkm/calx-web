@@ -1,0 +1,5 @@
+import fs from 'node:fs/promises';
+const host='calx.be';const key=(await fs.readFile('public/indexnow-verification.txt','utf8')).trim();const keyLocation=`https://${host}/indexnow-verification.txt`;
+const verification=await fetch(keyLocation);if(!verification.ok||(await verification.text()).trim()!==key)throw Error('Published IndexNow verification file unavailable or different.');
+const r=await fetch(`https://${host}/sitemap.xml`);if(!r.ok)throw Error('Published sitemap unavailable');const urls=[...(await r.text()).matchAll(/<loc>([^<]+)<\/loc>/g)].map(m=>m[1]);if(!urls.length||urls.some(u=>!/^https:\/\/calx\.be\/(fr|en)\//.test(u)))throw Error('Unexpected sitemap; no URLs submitted.');
+const response=await fetch('https://api.indexnow.org/indexnow',{method:'POST',headers:{'Content-Type':'application/json; charset=utf-8'},body:JSON.stringify({host,key,keyLocation,urlList:urls})});console.log(JSON.stringify({submitted:urls.length,status:response.status,response:await response.text()}));if(!response.ok)process.exitCode=1;

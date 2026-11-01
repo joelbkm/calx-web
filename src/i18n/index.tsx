@@ -12,6 +12,7 @@ interface I18nContextType {
     locale: Locale;
     t: Translations;
     setLocale: (locale: Locale) => void;
+    fixedLocale?: Locale;
 }
 
 const translations: Record<Locale, Translations> = { fr, en };
@@ -22,10 +23,12 @@ const I18nContext = createContext<I18nContextType>({
     setLocale: () => { },
 });
 
-export function I18nProvider({ children }: { children: ReactNode }) {
-    const [locale, setLocaleState] = useState<Locale>('fr');
+export function I18nProvider({ children, initialLocale }: { children: ReactNode; initialLocale?: Locale }) {
+    const [locale, setLocaleState] = useState<Locale>(initialLocale || 'fr');
 
     useEffect(() => {
+        if (initialLocale) { document.documentElement.lang = initialLocale; return; }
+        if (/^\/(fr|en)(?:\/|$)/.test(window.location.pathname)) return;
         // A `?lang=fr|en` URL param takes priority over the saved preference —
         // it's how the CalX app deep-links into Terms/Privacy in the user's
         // current app language (e.g. from the login screen or paywall).
@@ -41,7 +44,7 @@ export function I18nProvider({ children }: { children: ReactNode }) {
             setLocaleState(saved);
             document.documentElement.lang = saved;
         }
-    }, []);
+    }, [initialLocale]);
 
     const setLocale = useCallback((newLocale: Locale) => {
         setLocaleState(newLocale);
@@ -50,7 +53,7 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     }, []);
 
     return (
-        <I18nContext.Provider value={{ locale, t: translations[locale], setLocale }}>
+        <I18nContext.Provider value={{ locale, t: translations[locale], setLocale, fixedLocale: initialLocale }}>
             {children}
         </I18nContext.Provider>
     );

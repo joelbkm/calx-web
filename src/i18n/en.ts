@@ -221,7 +221,7 @@ const en: Translations = {
 
     privacyS8Title: '8. Data retention',
     privacyS8Intro: 'We retain your personal data for as long as your account is active. Upon account deletion:',
-    privacyS8F1: 'Your deletion request triggers a 15-day grace period during which you can cancel it (banner in the app + link in the email). After this period, all your personal data (profile, meals, exercises, photos, messages, subscription, etc.) is permanently deleted within an additional 24 hours.',
+    privacyS8F1: 'Your deletion request triggers a 30-day grace period during which you can cancel it (banner in the app + link in the email). After this period, all your personal data (profile, meals, exercises, photos, messages, subscription, etc.) is permanently deleted within an additional 24 hours.',
     privacyS8F2: 'Aggregated and anonymized data for statistical purposes may be retained indefinitely (this data no longer allows your identification).',
     privacyS8F3: 'AI Coach conversations are deleted with the account.',
     privacyS8F4: 'For technical reasons (security backups), some residual data may persist for up to 30 days after deletion, but is not accessible to any user or our team outside of an emergency restoration procedure.',

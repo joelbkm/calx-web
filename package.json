@@ -4,9 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build --webpack && node scripts/finalize-seo.mjs",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "seo:check": "node scripts/check-seo.mjs",
+    "seo:notify": "node scripts/notify-seo.mjs",
+    "deploy:hosting": "npm run build && npm run seo:check && firebase deploy --only hosting && npm run seo:notify"
   },
   "dependencies": {
     "@opentelemetry/api": "^1.9.0",
