@@ -453,7 +453,7 @@ export default function ModerationPage() {
                             </p>
                         )}
                         <p className="text-calx-text-muted text-[10px]">
-                            Modèle : {verdict.model || 'gemini-2.5-flash'} ·
+                            Modèle : {verdict.model || 'gemini-3.8-flash'} ·
                             Prompt : {verdict.promptVersion || 'v1.0'}
                             {!isSafeVerdict && verdict.confidence < 0.95 && (
                                 <span className="text-amber-400"> · ⚠️ confiance moyenne, vérifie manuellement</span>

@@ -10,7 +10,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'https://calx.com'),
+  metadataBase: new URL('https://calx.be'),
   title: {
     default: 'CalX — Simplifier la nutrition avec l\'IA',
     template: '%s | CalX',
